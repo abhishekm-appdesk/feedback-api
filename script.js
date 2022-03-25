@@ -2,7 +2,7 @@ import express from 'express'
 const app = express()
 import cors from 'cors'
 
-import {getAllUsers, getSpecificUser, updateSpecificUser,deleteSpecificUser, addFeedback, updateFeedback,getSpecificFeedback,getAllFeedbacks,approveByBuddy,approveByManager,deniedByBuddy,deniedByManage,reportFeedback, deleteFeedback} from './DatabaseHandler/dbQuery.js'
+import {getAllUsers, getSpecificUser, updateSpecificUser,deleteSpecificUser, addFeedback, updateFeedback,getSpecificFeedback,getAllFeedbacks,approveByBuddy,approveByManager,deniedByBuddy,deniedByManager,reportFeedback, deleteFeedback} from './DatabaseHandler/dbQuery.js'
 import {checkIfNull, isUserValid} from "./Validation/validation.js"
 
 //cors needed to make calls
@@ -138,7 +138,7 @@ app.put("/deniedByManager", async function(req, res){
         res.send("Incomplete Creds Provided")
         return
     }
-    let data = await deniedByManage(feedbackId)
+    let data = await deniedByManager(feedbackId)
     res.send(data)
 })
 
