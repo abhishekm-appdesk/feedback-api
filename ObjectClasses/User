@@ -1,15 +1,15 @@
 class User{
-    constructor(id,full_name,email, password,user_type,joinedOn,
-    position,buddy_id,manager_id){
+    constructor(id,fullName,email, password,userType,joinedOn,
+    position,buddyId,managerId){
         this.id = id;
-        this.full_name = full_name;
+        this.fullName = fullName;
         this.email = email;
         this.password = password;
-        this.user_type = user_type;
+        this.userType = userType;
         this.joinedOn = joinedOn;
         this.position = position;
-        this.buddy_id = buddy_id;
-        this.manager_id = manager_id;
+        this.buddyId = buddyId;
+        this.managerId = managerId;
     }
 }
 
