@@ -1,0 +1,16 @@
+class User{
+    constructor(id,full_name,email, password,user_type,joinedOn,
+    position,buddy_id,manager_id){
+        this.id = id;
+        this.full_name = full_name;
+        this.email = email;
+        this.password = password;
+        this.user_type = user_type;
+        this.joinedOn = joinedOn;
+        this.position = position;
+        this.buddy_id = buddy_id;
+        this.manager_id = manager_id;
+    }
+}
+
+export { User}
