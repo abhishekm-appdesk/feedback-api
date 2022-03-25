@@ -2,7 +2,8 @@ import express from 'express'
 const app = express()
 import cors from 'cors'
 
-import {getAllUsers, getSpecificUser} from './DatabaseHandler/dbQuery.js'
+import {getAllUsers, getSpecificUser, updateSpecificUser} from './DatabaseHandler/dbQuery.js'
+import {isUserValid} from "./Validation/validation.js"
 
 //cors needed to make calls
 app.use(cors());
@@ -18,12 +19,25 @@ app.get('/', function (req, res){
 })
 
 app.get("/allUsers", async function (req, res){
-    let allEmployeesList = await getAllEmployees()
+    let allEmployeesList = await getAllUsers()
     res.send(allEmployeesList)   
 })
 
-app.put("/updateEmployee",async function (req, res){
+app.put("/updateUser",async function (req, res){
 
     let userObject = JSON.parse(req.query["userObject"])
-    console.log(userObject);
+    if(isUserValid(userObject)){
+        return await updateSpecificUser(userObject) 
+    }else{
+        res.status(400)
+        res.send("Incomplete Creds Provided")
+        return
+    }
+})
+
+app.post("/addFeedback")
+
+app.get("/getAllFeedbacks", async function (req, res){
+    let userId = req.query("userId")
+
 })
