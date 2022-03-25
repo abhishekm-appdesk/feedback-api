@@ -102,4 +102,4 @@ async function deleteFeedback(feedbackId){
     return await dbObject.prepare("DELETE FROM Feedback_table WHERE Id = ?").run(feedbackId)
 }
 
-export {getAllUsers, getSpecificUser, updateSpecificUser, deleteSpecificUser, addFeedback, updateFeedback,getSpecificFeedback, getAllFeedbacks, approveByBuddy, approveByManager, deniedByBuddy, deniedByManager,reportFeedback, deleteFeedbackl̥ };
+export {getAllUsers, getSpecificUser, updateSpecificUser, deleteSpecificUser, addFeedback, updateFeedback,getSpecificFeedback, getAllFeedbacks, approveByBuddy, approveByManager, deniedByBuddy, deniedByManager,reportFeedback, deleteFeedback };

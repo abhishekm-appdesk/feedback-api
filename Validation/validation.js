@@ -11,5 +11,8 @@ function isUserValid(userObject){
 
         return true;
 }
+function checkIfNull(key) {
+    return key == null || key == ""
+}
 
-export {isUserValid}
+export {isUserValid,checkIfNull}
