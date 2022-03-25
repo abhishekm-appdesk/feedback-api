@@ -21,6 +21,10 @@ async function getSpecificUser(userId){
     return data
 }
 
+async function deleteSpecificUser(userId){
+    return await dbObject.prepare("DELETE FROM User_table WHERE Id = ?").run(userId)
+}
+
 async function updateSpecificUser(userObject){
     try{
         let updateQuery = await dbObject.prepare("UPDATE User_table SET id = ? , fullName = ? , email = ?,password =?, userType = ?, joinedOn =?, position = ? , buddyId = ?, managerId = ? WHERE id = ?")
@@ -33,8 +37,10 @@ async function updateSpecificUser(userObject){
 }
 
 async function getAllFeedbacks(userId){
-    return await dbObject.prepare("SELECT * FROM User_table WHERE id = ?").run(userId)
+    return await dbObject.prepare("SELECT * FROM Feedback_table WHERE receiverId = ?").run(userId)
 }
+
+async function 
 
 
 
