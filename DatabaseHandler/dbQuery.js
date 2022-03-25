@@ -17,7 +17,7 @@ async function getAllUsers(){
 }
 
 async function getSpecificUser(userId){
-    let data = await dbObject.prepare("SELECT FROM User_table WHERE id = ?").run(userId)
+    let data = await db.get("SELECT * FROM User_table WHERE id = ?", userId)
     return data
 }
 
