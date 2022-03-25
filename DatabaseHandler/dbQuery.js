@@ -22,7 +22,8 @@ async function getSpecificUser(userId){
 }
 
 async function deleteSpecificUser(userId){
-    return await dbObject.prepare("DELETE FROM User_table WHERE Id = ?").run(userId)
+    await dbObject.prepare("DELETE FROM User_table WHERE Id = ?").run(userId)
+    return "User Deleted"
 }
 
 async function updateSpecificUser(userObject){
@@ -101,4 +102,4 @@ async function deleteFeedback(feedbackId){
     return await dbObject.prepare("DELETE FROM Feedback_table WHERE Id = ?").run(feedbackId)
 }
 
-export {getAllUsers, getSpecificUser, updateSpecificUser};
+export {getAllUsers, getSpecificUser, updateSpecificUser, deleteSpecificUser, addFeedback, updateFeedback,getSpecificFeedback, getAllFeedbacks, approveByBuddy, approveByManager, deniedByBuddy, deniedByManager,reportFeedback, deleteFeedbackl̥ };

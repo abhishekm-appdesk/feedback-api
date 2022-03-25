@@ -2,7 +2,7 @@ import express from 'express'
 const app = express()
 import cors from 'cors'
 
-import {getAllUsers, getSpecificUser, updateSpecificUser} from './DatabaseHandler/dbQuery.js'
+import {deleteSpecificUser, getAllUsers, getSpecificUser, updateSpecificUser} from './DatabaseHandler/dbQuery.js'
 import {isUserValid} from "./Validation/validation.js"
 
 //cors needed to make calls
@@ -27,7 +27,8 @@ app.put("/updateUser",async function (req, res){
 
     let userObject = JSON.parse(req.query["userObject"])
     if(isUserValid(userObject)){
-        return await updateSpecificUser(userObject) 
+        await updateSpecificUser(userObject) 
+        res.send("Update Successfull")
     }else{
         res.status(400)
         res.send("Incomplete Creds Provided")
@@ -35,9 +36,72 @@ app.put("/updateUser",async function (req, res){
     }
 })
 
-app.post("/addFeedback")
+app.get("/getSpecificUser", async function(req, res){
+    let userId = req.query["userId"]
+    let objectToReturn = await getSpecificUser(userId)
+    res.send(objectToReturn)
+})
 
-app.get("/getAllFeedbacks", async function (req, res){
-    let userId = req.query("userId")
+app.delete("/deleteSpecificUser", async function(req, res){
+    let userId = req.query["userId"]
+    await deleteSpecificUser(userId)
+    res.send("Delete Succesful")
+})
+
+app.put("/updateSpecificUser", async function(req, res){
+    let userObject = JSON.parse(req.query["userObject"])
+    await updateSpecificUser(userObject)
+    res.send("Update Succesful")
+})
+
+app.post("/addFeedback", async function(req, res){
+    let feedbackObject = JSON.parse(req.query["feedbackObject"])
+    let data = await addFeedback(feedbackObject)
+    res.send(data)
+})
+
+app.put("/updateFeedback", async function(req, res){
+    let feedbackObject = JSON.parse(req.query["feedbackObject"])
+    let data = await updateFeedback(feedbackObject)
+    res.send(data)
+})
+
+app.get("/getSpecificFeedback", async function(req, res){
+    let feedbackId = req.query["feedbackId"]
+    let data = await getSpecificFeedback(feedbackId)
+    res.send(data)
+})
+
+app.get("/getAllFeedbacks", async function(req, res){
+    let userId = req.query["userId"]
+    let data = await getAllFeedbacks(userId)
+    res.send(data)
+})
+
+app.put("/approveByBuddy", async function(req, res){
+    let feedbackId = req.query["feedbackId"]
+    let data = await approveByBuddy(feedbackId)
+    res.send(data)
+})
+
+app.put("/approveByManager", async function(req, res){
+    let feedbackId = req.query["feedbackId"]
+    let data = await approveByManager(feedbackId)
+    res.send(data)
+})
+
+app.put("/deniedByBuddy", async function(req, res){
+    
+})
+
+app.put("/deniedByManager", async function(req, res){
+    
+})
+
+app.post("/reportFeedback", async function(req, res){
+
+})
+
+app.delete("/deleteFeedback", async function(res, req){
 
 })
