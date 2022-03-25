@@ -1,0 +1,16 @@
+class Feedback{
+    constructor(id,timestamp,senderType, content,senderId,receiverId,
+    improved,isVerifiedByBuddy,isVerifiedByManager){
+        this.id = id;
+        this.timestamp = timestamp;
+        this.senderType = senderType;
+        this.content = content;
+        this.senderId = senderId;
+        this.receiverId = receiverId;
+        this.improved = improved;
+        this.isVerifiedByBuddy = isVerifiedByBuddy;
+        this.isVerifiedByManager = isVerifiedByManager;
+    }
+}
+
+export { Feedback}
