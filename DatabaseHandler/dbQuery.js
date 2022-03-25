@@ -60,11 +60,11 @@ async function updateFeedback(feedbackObject){
 }
 
 async function getSpecificFeedback(feedbackId){
-    return await dbObject.prepare("SELECT * FROM Feedback_table WHERE id = ?").run(feedbackId)
+    return await db.get("SELECT * FROM Feedback_table WHERE id = ?", feedbackId)
 }
 
 async function getAllFeedbacks(userId){
-    return await dbObject.prepare("SELECT * FROM Feedback_table WHERE receiverId = ?").run(userId)
+    return await dbObject.all("SELECT * FROM Feedback_table WHERE receiverId = ?",userId)
 }
 
 async function approveByBuddy(feedbackId){
