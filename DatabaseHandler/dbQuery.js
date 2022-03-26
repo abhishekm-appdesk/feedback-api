@@ -44,8 +44,8 @@ async function updateSpecificUser(userObject){
 
 async function addFeedback(feedbackObject){
     try {
-    let addFeedback = await dbObject.prepare("INSERT INTO Feedback_table(id, timeStamp, senderType, content, senderId, receiverId, improved, isVerifiedByBuddy, isVerifiedByManager) VALUES (?,?,?,?,?,?,?,?,?)")
-    await addFeedback.run(feedbackObject.id, feedbackObject.timeStamp, feedbackObject.senderType, feedbackObject.content, feedbackObject.senderId, feedbackObject.receiverId,feedbackObject.improved,feedbackObject.isVerifiedByBuddy,feedbackObject.isVerifiedByManager)
+    let addFeedback = await dbObject.prepare("INSERT INTO Feedback_table(id, timeStamp, senderType, content, senderId, receiverId, improved, isVerifiedByBuddy, isVerifiedByManager, postedBy) VALUES (?,?,?,?,?,?,?,?,?)")
+    await addFeedback.run(feedbackObject.id, feedbackObject.timeStamp, feedbackObject.senderType, feedbackObject.content, feedbackObject.senderId, feedbackObject.receiverId,feedbackObject.improved,feedbackObject.isVerifiedByBuddy,feedbackObject.isVerifiedByManager, feedbackObject.postedBy)
     return "Added Feedback"
     }
     catch(err) {

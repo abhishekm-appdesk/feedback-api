@@ -12,7 +12,7 @@ function isUserValid(userObject){
         return true;
 }
 function checkIfNull(key) {
-    return key == null || key == ""
+    return key == null || key == "" || key == undefined
 }
 
 export {isUserValid,checkIfNull}
