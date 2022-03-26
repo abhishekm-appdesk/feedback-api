@@ -23,6 +23,8 @@ async function getSpecificUser(userId){
 
 async function getSpecificUserByEmail(userEmail){
     let data = await db.get("SELECT * FROM User_table WHERE email = ?", userEmail)
+    console.log("data");
+    console.log(data);
     return data
 }
 
