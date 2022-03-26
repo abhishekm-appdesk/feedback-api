@@ -21,6 +21,11 @@ async function getSpecificUser(userId){
     return data
 }
 
+async function getSpecificUserByEmail(userEmail){
+    let data = await db.get("SELECT * FROM User_table WHERE email = ?", userEmail)
+    return data
+}
+
 async function deleteSpecificUser(userId){
     await dbObject.prepare("DELETE FROM User_table WHERE Id = ?").run(userId)
     return "User Deleted"
@@ -109,4 +114,4 @@ async function getUserDetails(userEmail){
     return data
 }
 
-export {getAllUsers, getSpecificUser, updateSpecificUser, deleteSpecificUser, addFeedback, updateFeedback,getSpecificFeedback, getAllFeedbacks, approveByBuddy, approveByManager, deniedByBuddy, deniedByManager,reportFeedback, deleteFeedback, getUserDetails };
+export {getAllUsers, getSpecificUser, updateSpecificUser, deleteSpecificUser, addFeedback, updateFeedback,getSpecificFeedback, getAllFeedbacks, approveByBuddy, approveByManager, deniedByBuddy, deniedByManager,reportFeedback, deleteFeedback, getUserDetails , getSpecificUserByEmail};

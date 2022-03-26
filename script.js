@@ -2,7 +2,7 @@ import express from 'express'
 const app = express()
 import cors from 'cors'
 
-import {getAllUsers, getSpecificUser, updateSpecificUser,deleteSpecificUser, addFeedback, updateFeedback,getSpecificFeedback,getAllFeedbacks,approveByBuddy,approveByManager,deniedByBuddy,deniedByManager,reportFeedback, deleteFeedback, getUserDetails} from './DatabaseHandler/dbQuery.js'
+import {getAllUsers, getSpecificUser, updateSpecificUser,deleteSpecificUser, addFeedback, updateFeedback,getSpecificFeedback,getAllFeedbacks,approveByBuddy,approveByManager,deniedByBuddy,deniedByManager,reportFeedback, deleteFeedback, getUserDetails, getSpecificUserByEmail} from './DatabaseHandler/dbQuery.js'
 import {checkIfNull, isUserValid} from "./Validation/validation.js"
 
 //cors needed to make calls
@@ -63,7 +63,6 @@ app.put("/updateFeedback", async function(req, res){
     }
     let feedbackObject = JSON.parse(req.query["feedbackObject"])
     let data = await updateFeedback(feedbackObject)
-    data.feedbackId
     res.send(data)
 })
 
@@ -159,4 +158,23 @@ app.get("/getUserDetails", async function (req, res){
     }
     let data = await getUserDetails(userEmail)
     res.send(data)
+})
+
+app.get("/verifyUserDetails", async function(req, res){
+    let userEmail = req.query["userEmail"]
+    let userPassword = req.query["userPassword"]
+
+    if(checkIfNull(userEmail) || checkIfNull(userPassword)){
+        res.status(400)
+        res.send("Incomplete Creds Provided")
+        return
+    }else{
+        let userObject = await getSpecificUserByEmail(userEmail)
+        if(userPassword === userObject["password"] || userPassword == userObject["password"]){
+            res.send(userObject)
+        }else{
+            res.status(200)
+            res.send("Incorrect Credential")
+        }
+    }
 })
